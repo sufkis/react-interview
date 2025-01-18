@@ -39,6 +39,15 @@ const productSlice = createSlice({
       } as IProduct;
       state.products = [...state.products, ProductToAdd];
       state.nextCreatedId++;
+    },
+    sortBy(state, action) {
+      if (action.payload === 'name') {
+        state.products.sort((a, b) => a.name.localeCompare(b.name));
+      }
+      if (action.payload === 'date') {
+        state.products.sort((a, b) => a.creationDate - b.creationDate);
+
+      }
     }
   }
 });

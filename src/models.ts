@@ -4,7 +4,7 @@ export interface IProduct {
   description?: string,
   price: number,
   image?: string;
-  creationDate?: number;
+  creationDate: number;
 }
 
 export interface IProductState {
