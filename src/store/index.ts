@@ -4,15 +4,15 @@ import { IProductState } from "../models.ts";
 
 const initialState: IProductState = {
   products: PRODUCTS,
-  selectedProductId: 1
+  selectedProduct: undefined
 }
 
 const productSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    increment(state) {
-      state.selectedProductId++
+    select(state, action) {
+      state.selectedProduct = state.products.find(product => product.id === action.payload)
     }
   }
 });
