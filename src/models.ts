@@ -11,4 +11,5 @@ export interface IProductState {
   products: IProduct[];
   selectedProduct: IProduct | undefined;
   nextCreatedId: number;
+  displayedProducts: IProduct[]
 }

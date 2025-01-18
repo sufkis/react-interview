@@ -5,7 +5,7 @@ import ProductListItem from '../product-list-item/ProductListItem.tsx';
 import './ProductList.scss';
 
 const ProductList = () => {
-  const products = useSelector((state: IProductState) => state.products);
+  const products = useSelector((state: IProductState) => state.displayedProducts);
 
   return (
     <div className="product-list">

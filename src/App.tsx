@@ -14,8 +14,12 @@ function App() {
     dispatch(productActions.select(undefined));
   }
 
-  const handleOnSelectSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSelectSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(productActions.sortBy(event.currentTarget.value));
+  }
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(productActions.search(event.currentTarget.value));
   }
 
   return (
@@ -27,9 +31,19 @@ function App() {
         <div className="store-products-list">
           <div className="store-products-list-actions">
             <button className="button success" onClick={handleOnAdd}>+ Add</button>
+            <div className="form-control">
+              <label htmlFor="search">🔍</label>
+              <input
+                onChange={(event) => handleSearch(event)}
+                id="search"
+                type="text"
+                name="search"
+                placeholder="search products"
+              />
+            </div>
             <div className="form-control sort">
-            <label htmlFor="sortBy">Sort by</label>
-              <select name="sortBy" id="sortBy" onChange={(event) => handleOnSelectSort(event)}>
+              <label htmlFor="sortBy">Sort by</label>
+              <select name="sortBy" id="sortBy" onChange={(event) => handleSelectSort(event)}>
                 <option value="date">Date</option>
                 <option value="name">Name</option>
               </select>
