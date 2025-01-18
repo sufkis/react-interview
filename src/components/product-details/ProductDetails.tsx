@@ -58,7 +58,7 @@ const ProductDetails: React.FC<{ selectedProduct: IProduct | undefined }> = ({ s
 
   return (
     <div className="details card">
-      <div className="details-header">{ `Product id: ${selectedProduct?.id} details` }</div>
+      <div className="details-header">{ selectedProduct?.id ? `Product id: ${selectedProduct?.id} details` : 'Add a new product' }</div>
       <img
         src={selectedProduct?.image ?? PLACEHOLDER_IMAGE}
         alt={selectedProduct?.name ?? 'placeholder'}
