@@ -4,10 +4,11 @@ export interface IProduct {
   description?: string,
   price: number,
   image?: string;
-  creationDate?: Date
+  creationDate?: number;
 }
 
 export interface IProductState {
   products: IProduct[];
-  selectedProduct: IProduct | undefined,
+  selectedProduct: IProduct | undefined;
+  nextCreatedId: number;
 }

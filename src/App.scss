@@ -17,7 +17,8 @@
     
     &-list {
       width: 55%;
-      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
     }
 
     &-display {

@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { PLACEHOLDER_IMAGE } from '../../constants.ts';
 import { IProduct } from '../../models.ts';
-import { isNameValid, isDescriptionValid, isPriceValid } from '../../utils.ts';
+import { productActions } from '../../store/index.ts';
+import { isDescriptionValid, isNameValid, isPriceValid } from '../../utils.ts';
 import './ProductDetails.scss';
 
 const ProductDetails: React.FC<{ selectedProduct: IProduct | undefined }> = ({ selectedProduct }) => {
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState<string[]>([]);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const saveDetailsAction = (formData: FormData) => {
     const name = formData.get('name');
@@ -25,23 +30,44 @@ const ProductDetails: React.FC<{ selectedProduct: IProduct | undefined }> = ({ s
 
     if (errors.length > 0) {
       setErrors(errors);
+      if (selectedProduct) {
+        dispatch(productActions.select(selectedProduct.id));
+      }
       return;
     }
 
+    if (selectedProduct) {
+      dispatch(productActions.edit({
+        id: selectedProduct?.id,
+        name,
+        description,
+        price
+      }));
+    } else {
+      dispatch(productActions.add({
+        name, description, price
+      }));
+    }
+    
     setErrors([]);
   };
+
+  const handleFormChange = (event: FormEvent<HTMLFormElement>) => {
+    setIsFormValid(event.currentTarget.checkValidity())
+  }
 
   return (
     <div className="details">
       <div className="details-header">{ `Product id: ${selectedProduct?.id} details` }</div>
       <img
-        src={selectedProduct?.image}
-        alt=""
+        src={selectedProduct?.image ?? PLACEHOLDER_IMAGE}
+        alt={selectedProduct?.name ?? 'placeholder'}
         className="details-image"
       />
       <form
         action={saveDetailsAction}
         className="details-form"
+        onChange={(event) => handleFormChange(event)}
       >
         <div className="form-control">
           <label htmlFor="name">Name</label>
@@ -84,6 +110,7 @@ const ProductDetails: React.FC<{ selectedProduct: IProduct | undefined }> = ({ s
         <button
           className="form-submit"
           type="submit"
+          disabled={!isFormValid}
         >
           Save
         </button>
