@@ -57,7 +57,7 @@ const ProductDetails: React.FC<{ selectedProduct: IProduct | undefined }> = ({ s
   }
 
   return (
-    <div className="details">
+    <div className="details card">
       <div className="details-header">{ `Product id: ${selectedProduct?.id} details` }</div>
       <img
         src={selectedProduct?.image ?? PLACEHOLDER_IMAGE}
@@ -89,6 +89,7 @@ const ProductDetails: React.FC<{ selectedProduct: IProduct | undefined }> = ({ s
             name="description"
             defaultValue={selectedProduct?.description}
             maxLength={200}
+            rows={5}
           />
         </div>
         <div className="form-control">
@@ -107,13 +108,15 @@ const ProductDetails: React.FC<{ selectedProduct: IProduct | undefined }> = ({ s
             $
           </div>
         </div>
-        <button
-          className="form-submit"
-          type="submit"
-          disabled={!isFormValid}
-        >
-          Save
-        </button>
+        <div className="details-form-submit">
+          <button
+            className="button success"
+            type="submit"
+            disabled={!isFormValid}
+          >
+            Save
+          </button>
+        </div>
       </form>
     </div>
   );

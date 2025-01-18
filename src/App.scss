@@ -1,28 +1,88 @@
 .store {
   height: 100vh;
   width: 100vw;
+  background-color: var(--color-secondary);
   overflow: hidden;
   
   &-header {
     height: 50px;
-    padding: 6px 24px;
+    padding: 6px 72px;
     font-size: 24px;
+    background-color: var(--color-main);
+    color: var(--color-secondary);
   }
 
   &-products {
     width: 100%;
     height: calc(100% - 50px);
     display: flex;
-    padding: 24px;
+    padding: 24px 72px;
+    padding-top: 0;
     
     &-list {
       width: 55%;
       display: flex;
       flex-direction: column;
+
+      &-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px;
+
+        select {
+          height: 42px;
+          width: 96px;
+          margin-left: 8px;
+        }
+      }
     }
 
-    &-display {
+    &-details {
+      padding-top: 64px;
+      padding-left: 24px;
       width: 45%;
     }
+  }
+}
+
+:root {
+  --color-main: #344966;
+  --color-secondary: #F1E4F3;
+  --color-selected: #ECF39E;
+  --color-success: #668F80;
+  --color-failure: #CF5C36;
+
+  .button {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+
+    &:hover {
+      opacity: 0.9;
+      cursor: pointer;
+    }
+
+    &:disabled {
+      opacity: 1;
+      cursor: default;
+    }
+  
+    &.success {
+      background-color: var(--color-success);
+    }
+  
+    &.failure {
+      background-color: var(--color-failure);
+    }
+  }
+
+  .card {
+    border: 1px solid var(--color-main);
+    border-radius: 8px;
+    box-shadow: 1px 1px 5px var(--color-main);
+    background-color: #fff;
   }
 }

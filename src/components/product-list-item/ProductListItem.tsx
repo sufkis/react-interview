@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { IProduct } from '../../models';
 import { productActions } from '../../store/index.ts';
 import './ProductListItem.scss';
+import '../../App.scss'
 
 const ProductListItem: React.FC<Partial<IProduct>> = ({
   id,
@@ -23,7 +24,7 @@ const ProductListItem: React.FC<Partial<IProduct>> = ({
 
   return (
     <div
-      className="product"
+      className="product card"
       onClick={selectProductHandler}
     >
       <img
@@ -35,7 +36,7 @@ const ProductListItem: React.FC<Partial<IProduct>> = ({
       <div className="product-description">{description}</div>
       <div className="product-actions">
         <button
-          className="button delete"
+          className="button failure"
           onClick={(event) => deleteProductHandler(event)}
         >
           Delete

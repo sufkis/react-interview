@@ -1,5 +1,53 @@
-input {
-  &.error {
-    border: 2px solid red;
+.details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+
+  &-header {
+    font-size: 24px;
+  }
+
+  &-image {
+    height: 400px;
+    width: 400px;
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .form-control {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-submit {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  input {
+    height: 36px;
+    font-size: 16px;
+    border-radius: 4px;
+
+    &.error {
+      border: 2px solid var(--color-failure);
+    }
+  }
+
+  textarea {
+    resize: none;
+    font-size: 16px;
+    border-radius: 4px;
+
+    &.error {
+      border: 2px solid var(--color-failure);
+    }
   }
 }

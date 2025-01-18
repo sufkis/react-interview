@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.scss';
 import ProductDetails from './components/product-details/ProductDetails.tsx';
@@ -26,8 +26,9 @@ function App() {
       <div className="store-products">
         <div className="store-products-list">
           <div className="store-products-list-actions">
-            <button onClick={handleOnAdd}>+ Add</button>
+            <button className="button success" onClick={handleOnAdd}>+ Add</button>
             <div className="form-control sort">
+            <label htmlFor="sortBy">Sort by</label>
               <select name="sortBy" id="sortBy" onChange={(event) => handleOnSelectSort(event)}>
                 <option value="date">Date</option>
                 <option value="name">Name</option>
